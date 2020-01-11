@@ -9,8 +9,10 @@ var tsProject = ts.createProject('tsconfig.json');
 var paths = {
     cssSrc: './scss/*.scss',
     cssDist: '../css',
+    cssWatch: '../css/*.css',
     tsSrc: './ts/*.ts',
-    tsDist: '../js'
+    tsDist: '../js',
+    tsWatch: '../js/*.js'
 }
 
 function sassDev() {
@@ -46,7 +48,7 @@ function tsBuild () {
 
 function liveDev () {
     livereload.listen(); 
-    watch(['*.css', '*.html', '*.js']).on('change', livereload.changed);
+    watch([paths.cssWatch, paths.tsWatch]).on('change', livereload.changed);
     watch([paths.cssSrc], sassDev);
     watch([paths.tsSrc], tsDev);
 }
